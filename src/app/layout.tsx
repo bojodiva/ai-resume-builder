@@ -1,13 +1,17 @@
 "use client";
+import theme from "@/theme";
+import { ResumeProvider } from "@/contexts/ResumeProviders";
 
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import { ChakraProvider} from "@chakra-ui/react";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
+        <ResumeProvider>
+        <ChakraProvider theme={theme}>{children}</ChakraProvider>
+        </ResumeProvider>
       </body>
     </html>
   )
