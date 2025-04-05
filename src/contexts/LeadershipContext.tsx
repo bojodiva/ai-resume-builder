@@ -9,23 +9,29 @@ interface LeadershipExperience {
   experience: string;
 }
 
+interface LeadershipExperienceContextType {
+    leadershipExperience: LeadershipExperience[];
+    addLeadershipExperience: (data: LeadershipExperience) => void;
+    removeLeadershipExperience: (index: number) => void;
+  }
+
 // context
-const LeadershipExperienceContext = createContext<
-  { leadershipExperience: LeadershipExperience; setLeadershipExperience: (data: LeadershipExperience) => void } | undefined
->(undefined);
+const LeadershipExperienceContext = createContext< LeadershipExperienceContextType | undefined>(undefined);
 
 // provider component
 export function LeadershipExperienceProvider({ children }: { children: ReactNode }) {
-  const [leadershipExperience, setLeadershipExperience] = useState<LeadershipExperience>({
-    role: "",
-    organisationName: "",
-    startDate: "",
-    endDate: "",
-    experience: "",
-  });
+  const [leadershipExperience, setLeadershipExperience] = useState<LeadershipExperience[]>([]);
+
+  const addLeadershipExperience = (data: LeadershipExperience) => {
+    setLeadershipExperience(prev => [...prev, data]);
+  };
+
+  const removeLeadershipExperience = (index: number) => {
+    setLeadershipExperience(prev => prev.filter((_, i) => i !== index));
+  };
 
   return (
-    <LeadershipExperienceContext.Provider value={{ leadershipExperience, setLeadershipExperience }}>
+    <LeadershipExperienceContext.Provider value={{ leadershipExperience, addLeadershipExperience, removeLeadershipExperience}}>
       {children}
     </LeadershipExperienceContext.Provider>
   );

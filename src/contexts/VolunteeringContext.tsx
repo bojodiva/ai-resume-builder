@@ -9,23 +9,29 @@ interface VolunteeringExperience {
   experience: string;
 }
 
+interface VolunteeringExperienceContextType {
+    volunteeringExperience: VolunteeringExperience[];
+    addVolunteeringExperience: (data: VolunteeringExperience) => void;
+    removeVolunteeringExperience: (index: number) => void;
+  }
+
 // context
-const VolunteeringExperienceContext = createContext<
-  { volunteeringExperience: VolunteeringExperience; setVolunteeringExperience: (data: VolunteeringExperience) => void } | undefined
->(undefined);
+const VolunteeringExperienceContext = createContext<VolunteeringExperienceContextType | undefined>(undefined);
 
 // provider component
 export function VolunteeringExperienceProvider({ children }: { children: ReactNode }) {
-  const [volunteeringExperience, setVolunteeringExperience] = useState<VolunteeringExperience>({
-    role: "",
-    organisationName: "",
-    startDate: "",
-    endDate: "",
-    experience: "",
-  });
+  const [volunteeringExperience, setVolunteeringExperience] = useState<VolunteeringExperience[]>([]);
+
+  const addVolunteeringExperience = (data: VolunteeringExperience) => {
+    setVolunteeringExperience(prev => [...prev, data]);
+  };
+
+  const removeVolunteeringExperience = (index: number) => {
+    setVolunteeringExperience(prev => prev.filter((_, i) => i !== index));
+  };
 
   return (
-    <VolunteeringExperienceContext.Provider value={{ volunteeringExperience, setVolunteeringExperience }}>
+    <VolunteeringExperienceContext.Provider value={{ volunteeringExperience, addVolunteeringExperience, removeVolunteeringExperience }}>
       {children}
     </VolunteeringExperienceContext.Provider>
   );
