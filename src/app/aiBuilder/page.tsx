@@ -4,17 +4,6 @@ import { Box, Button, FormControl, FormLabel, Input, Textarea } from "@chakra-ui
 import { useRouter } from "next/navigation";
 
 export default function ResumeBuilder(){
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        middleName: "",
-        email: "",
-        tel: "",
-        location: "",
-        linkedIn: "",
-        portfolio: "",
-
-    })
 
     return(
         <></>

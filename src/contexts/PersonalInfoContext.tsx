@@ -2,9 +2,12 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 //personal info type
 interface PersonalInfo {
-  name: string;
+  firstName: string,
+  lastName: string,
+  middleName: string,
   email: string;
   tel: string;
+  location: string;
   linkedInUrl: string;
   portfolioUrl: string;
 }
@@ -15,9 +18,12 @@ const PersonalInfoContext = createContext<{ personalInfo: PersonalInfo; setPerso
 // provider Component
 export function PersonalInfoProvider({ children }: { children: ReactNode }) {
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
-    name: "",
+    firstName: "",
+    lastName: "",
+    middleName: "",
     email: "",
     tel: "",
+    location: "",
     linkedInUrl: "",
     portfolioUrl: "",
   });
