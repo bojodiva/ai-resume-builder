@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useWorkExperience } from "@/contexts/WorkContext";
-import { Box, Button, FormControl, FormLabel, Input, Text, Heading, VStack, SimpleGrid } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Box, Button, FormControl, FormLabel, Input, Textarea, Heading, VStack, Flex } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 export default function WorkExperiencePage(){
     const router = useRouter();
@@ -16,12 +16,15 @@ export default function WorkExperiencePage(){
     });
 
     
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {name, value} = e.target;
+    setForm({ ...form, [name]: value });
   };
 
+  const {role, companyName, startDate, endDate, achievements} = form
+
   const handleAdd = () => {
-    if (form.companyName && form.role && form.startDate && form.endDate && form.achievements) {
+    if (companyName && role && startDate && endDate && achievements) {
       addWorkExperience(form);
       setForm({ role: "",
         companyName: "",
@@ -35,39 +38,43 @@ export default function WorkExperiencePage(){
 
     return(
        <>
-        <Box>
-            <Heading>Add Work Experience</Heading>
+       <Box maxW="700px" mx="auto" mt="100px" mb="100px" p={6} border="1px solid #ccc" borderRadius="md">
+        {/* <Flex width="dvh" justify="center" align="center" height="100vh"> */}
+        <Box width="dvh">
+            <Heading mb={8} fontSize={["22px", "28px", "32px", "36px"]}>Add Work Experience</Heading>
 
-            <VStack>
+            <VStack gap={3}>
                 <FormControl>
-                    <FormLabel> Job Role</FormLabel>
-                    <Input  name="role" placeholder="Your job role" value={form.role} onChange={handleChange}/>
+                    <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>Job Role</FormLabel>
+                    <Input  name="role" placeholder="your job role" value={role} onChange={handleChange} _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle"/>
                 </FormControl>
 
                 <FormControl>
-                    <FormLabel>Name of Company</FormLabel>
-                    <Input name="companyName" placeholder="Name of company" value={form.companyName} onChange={handleChange}/>
+                    <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>Name of Company</FormLabel>
+                    <Input name="companyName" placeholder="name of company" value={companyName} onChange={handleChange} _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]} variant="subtle"/>
                 </FormControl>
 
                 <FormControl>
-                    <FormLabel>Start Date</FormLabel>
-                    <Input name="startDate" placeholder="e.g september, 2023" value={form.startDate} onChange={handleChange}/>
+                    <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>Start Date</FormLabel>
+                    <Input name="startDate" placeholder="september, 2023" value={startDate} onChange={handleChange} _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle"/>
                 </FormControl>
 
                 <FormControl>
-                    <FormLabel>End Date</FormLabel>
-                    <Input name="endDate" placeholder="e.g August, 2024" value={form.endDate} onChange={handleChange}/>
+                    <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>End Date</FormLabel>
+                    <Input name="endDate" placeholder="august, 2024" value={endDate} onChange={handleChange} _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle"/>
                 </FormControl>
 
                 <FormControl>
-                    <FormLabel>Achievements</FormLabel>
-                    <Input name="achievements" placeholder="designed the company's website" value={form.achievements} onChange={handleChange}/>
+                    <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>Achievements</FormLabel>
+                    <Textarea name="achievements" placeholder="e.g designed the company's website" value={achievements} onChange={handleChange} _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle"/>
                 </FormControl>
-            </VStack>
 
-            <Button mt={4} colorScheme="blue" onClick={handleAdd} isDisabled={!form.role || !form.companyName || !form.startDate || !form.endDate || !form.achievements}>
+            <Button width={"full"} mt={4} fontSize={["14px", "16px", "18px", "18px"]} py={6} colorScheme="blue" onClick={handleAdd} isDisabled={!role || !companyName || !startDate || !endDate || !achievements}>
               Add Work Experience
             </Button>
+            </VStack>
+
+        </Box>
         </Box>
        </>
     );
