@@ -14,12 +14,11 @@ export default function PersonalInfoPage() {
   }
 
   const handleAdd = () => {
-    router.push("/form/workPage")
+    router.push("/form/educationPage")
   }
 
   return (
-    <Box maxW="700px" mx="auto" mt="100px" mb="100px" p={6} border="1px solid #ccc" borderRadius="md">
-     {/* <Flex width="dvh" justify="center" align="center" height="100vh"> */}
+    <Box maxW="700px" mx="auto" mt="100px" mb="100px" p={8} border="1px solid #ccc" borderRadius="md">
              <Box width="dvh">
                  <Heading  mb={8} fontSize={["22px", "28px", "32px", "36px"]}>Add Personal Information</Heading>
      
@@ -58,7 +57,7 @@ export default function PersonalInfoPage() {
 
                      <FormControl>
                          <FormLabel fontSize={["14px", "16px", "18px", "18px"]}>LinkedIn Profile Url</FormLabel>
-                         <Input type="url" name="linkedInUrl" value={linkedInUrl} onChange={handleChange} placeholder="input shortened profile url"  _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle" required/>
+                         <Input type="url" name="linkedInUrl" value={linkedInUrl} onChange={handleChange} placeholder="input a shortened profile url"  _placeholder={{ color: "gray.400" }} fontSize={["12px", "12px", "15px", "16px"]}  variant="subtle" required/>
                      </FormControl>
 
                      <FormControl>

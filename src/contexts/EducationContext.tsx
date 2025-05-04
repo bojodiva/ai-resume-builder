@@ -1,47 +1,47 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
 //type defination
-interface EducationExperience {
-  shoolName: string;
+interface Education {
+  schoolName: string;
   degree: string;
   startDate: string;
   endDate: string;
   course: string;
 }
 
-interface EducationExperienceContextType {
-    educationExperience: EducationExperience[];
-    addEducationExperience: (data: EducationExperience) => void;
-    removeEducationExperience: (index: number) => void;
+interface EducationContextType {
+    education: Education[];
+    addEducation: (data: Education) => void;
+    removeEducation: (index: number) => void;
   }
 
 // context
-const EducationExperienceContext = createContext<EducationExperienceContextType| undefined>(undefined);
+const EducationContext = createContext<EducationContextType| undefined>(undefined);
 
 // provider component
-export function EducationExperienceProvider({ children }: { children: ReactNode }) {
-  const [educationExperience, setEducationExperience] = useState<EducationExperience[]>([]);
+export function EducationProvider({ children }: { children: ReactNode }) {
+  const [education, setEducation] = useState<Education[]>([]);
 
-  const addEducationExperience = (data: EducationExperience) => {
-    setEducationExperience(prev => [...prev, data]);
+  const addEducation = (data: Education) => {
+    setEducation(prev => [...prev, data]);
   };
 
-  const removeEducationExperience = (index: number) => {
-    setEducationExperience(prev => prev.filter((_, i) => i !== index));
+  const removeEducation = (index: number) => {
+    setEducation(prev => prev.filter((_, i) => i !== index));
   };
 
   return (
-    <EducationExperienceContext.Provider value={{ educationExperience, addEducationExperience, removeEducationExperience }}>
+    <EducationContext.Provider value={{ education, addEducation, removeEducation }}>
       {children}
-    </EducationExperienceContext.Provider>
+    </EducationContext.Provider>
   );
 }
 
 
-export function useEducationExperience() {
-  const context = useContext(EducationExperienceContext);
+export function useEducation() {
+  const context = useContext(EducationContext);
   if (!context) {
-    throw new Error("useEducationExperience must be used within a EducationExperienceProvider");
+    throw new Error("useEducation must be used within a EducationProvider");
   }
   return context;
 }

@@ -3,7 +3,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 //type defination
 interface VolunteeringExperience {
   role: string;
-  organisationName: string;
+  organizationName: string;
   startDate: string;
   endDate: string;
   experience: string;

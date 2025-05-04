@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useWorkExperience } from "@/contexts/WorkContext";
-import { Box, Button, FormControl, FormLabel, Input, Textarea, Heading, VStack, Flex } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, Textarea, Heading, VStack} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
 export default function WorkExperiencePage(){
@@ -38,7 +38,7 @@ export default function WorkExperiencePage(){
 
     return(
        <>
-       <Box maxW="700px" mx="auto" mt="100px" mb="100px" p={6} border="1px solid #ccc" borderRadius="md">
+       <Box maxW="700px" mx="auto" mt="100px" mb="100px" p={8} border="1px solid #ccc" borderRadius="md">
         {/* <Flex width="dvh" justify="center" align="center" height="100vh"> */}
         <Box width="dvh">
             <Heading mb={8} fontSize={["22px", "28px", "32px", "36px"]}>Add Work Experience</Heading>

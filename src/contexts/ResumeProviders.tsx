@@ -4,10 +4,12 @@ import { WorkExperienceProvider } from "./WorkContext";
 import { SkillsProvider } from "./SkillsContext";
 import { VolunteeringExperienceProvider } from "./VolunteeringContext";
 import { LeadershipExperienceProvider } from "./LeadershipContext";
+import { EducationProvider } from "./EducationContext";
 
 export function ResumeProvider({children}: {children: ReactNode}){
     return(
         <PersonalInfoProvider>
+            <EducationProvider>
             <WorkExperienceProvider>
                 <SkillsProvider>
                     <VolunteeringExperienceProvider>
@@ -17,6 +19,7 @@ export function ResumeProvider({children}: {children: ReactNode}){
                     </VolunteeringExperienceProvider>
                 </SkillsProvider>
             </WorkExperienceProvider>
+            </EducationProvider>
         </PersonalInfoProvider>
     )
 }

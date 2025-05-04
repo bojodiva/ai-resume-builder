@@ -14,7 +14,7 @@ export default function Home() {
     <Text color="gray.600" mb={6} fontSize={["16px", "20px", "24px", "22px"]}>
     Build AI-powered resumes effortlessly.
     </Text>
-    <Link href="/form/personalPage">
+    <Link href="/form/skillsPage">
       <Button colorScheme="yellow" bg="accent" color="gray.600" _hover={{ bg: "yellow.400" }} px={8} py={6}>
         Get Started
       </Button>
